@@ -1,0 +1,22 @@
+<h1 class="mt-4">Random Santa</h1>
+<p class="lead mb-3">Welcome
+    <%= user.name %>
+</p>
+<form action="">
+    <h4>What is the name of your gift exchange?</h4>
+    <input type="text" />
+    <h4>What is the date and time of your event?</h4>
+    <input type="date" />
+    <input type="time" />
+
+    <h4>Will you be participating in this event?</h4>
+    <label for="yes">YES</label>
+    <input type="radio" class="participate" id="yes" name="radio" />
+    <label for="no">NO</label>
+    <input type="radio" class="participate" id="no" name="radio" />
+    <br />
+    <button type="submit" class="btn btn-success">Submit</button>
+</form>
+
+<br />
+<a href="/users/logout" class="btn btn-secondary">Logout</a>
