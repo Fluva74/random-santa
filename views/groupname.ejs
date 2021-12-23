@@ -1,0 +1,18 @@
+<div class="row mt-5">
+    <div class="col-md-6 m-auto">
+        <div class="card card-body">
+            <h1 class="text-center mb-3">Exchange Event</h1>
+
+            <form action="/users/register" method="POST">
+                <div class="form-group">
+                    <label for="name">What is the name of your exchange event?</label>
+                    <input type="event" id="event" name="event" class="form-control" placeholder="Event Name" value="<%= typeof event != 'undefined' ? event : '' %>" />
+                </div>
+            </form>
+            <br />
+            <label for="groupname">Don't have an event yet?</label>
+            <a href="/users/exchange" id="groupname" name="groupname" class="btn btn-success">Create Exchange</a
+      >
+    </div>
+  </div>
+</div>
