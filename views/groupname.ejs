@@ -3,16 +3,20 @@
         <div class="card card-body">
             <h1 class="text-center mb-3">Exchange Event</h1>
 
-            <form action="/users/register" method="POST">
+            <form action="/users/groupname" method="POST">
                 <div class="form-group">
                     <label for="name">What is the name of your exchange event?</label>
                     <input type="event" id="event" name="event" class="form-control" placeholder="Event Name" value="<%= typeof event != 'undefined' ? event : '' %>" />
                 </div>
+                <br />
+                <input type="submit" class="btn btn-success" />
             </form>
             <br />
             <label for="groupname">Don't have an event yet?</label>
-            <a href="/users/exchange" id="groupname" name="groupname" class="btn btn-success">Create Exchange</a
+            <a href="/users/event" id="groupname" name="groupname" class="btn btn-success">Create Exchange</a
       >
     </div>
-  </div>
-</div>
+
+    <a href="/users/logout" class="btn btn-secondary">Logout</a>
+        </div>
+    </div>
