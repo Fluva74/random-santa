@@ -1,6 +1,9 @@
 const mongoose = require("mongoose");
 
 const UserSchema = new mongoose.Schema({
+    event: {
+        type: String,
+    },
     name: {
         type: String,
         required: true,
@@ -16,6 +19,18 @@ const UserSchema = new mongoose.Schema({
     date: {
         type: Date,
         default: Date.now,
+    },
+    event: {
+        type: String,
+    },
+    date: {
+        type: String,
+    },
+    time: {
+        type: String,
+    },
+    price: {
+        type: Number,
     },
 });
 

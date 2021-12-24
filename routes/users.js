@@ -5,7 +5,7 @@ const passport = require("passport");
 // Load User model
 const User = require("../models/User");
 const Event = require("../models/Event");
-const { forwardAuthenticated } = require("../config/auth");
+const { forwardAuthenticated, ensureAuthenticated } = require("../config/auth");
 
 const corsOptions = {
     origin: "http://localhost:3000",
@@ -28,13 +28,8 @@ router.get("/exchange", forwardAuthenticated, (req, res) =>
 //Event Page
 router.get("/event", forwardAuthenticated, (req, res) => res.render("event"));
 
-//Groupname Page
-router.get("/groupname", forwardAuthenticated, (req, res) =>
-    res.render("groupname")
-);
-
 //Event
-router.post("/event", forwardAuthenticated, (req, res) => {
+router.post("/event", ensureAuthenticated, async(req, res) => {
     var myData = new Event(req.body);
     myData
         .save()
@@ -44,7 +39,15 @@ router.post("/event", forwardAuthenticated, (req, res) => {
         .catch((err) => {
             res.status(400).send("unable to save");
         });
+
+    console.log("event complete");
+    res.redirect("/exchange");
 });
+
+//Groupname Page
+router.get("/groupname", forwardAuthenticated, (req, res) =>
+    res.render("groupname")
+);
 
 // Register
 router.post("/register", (req, res) => {
