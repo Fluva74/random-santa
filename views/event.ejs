@@ -1,9 +1,10 @@
 <div class="row mt-5">
     <div class="col-md-6 m-auto">
         <div class="card card-body">
-            <h1 class="text-center mb-3">Exchange Event</h1>
-
-            <form action="/users/register" method="POST">
+            <h1 class="mt-4">Random Santa</h1>
+            <h2 class="text-center mb-3">Exchange Event</h2>
+            <p class="lead mb-3">Welcome</p>
+            <form action="/users/event" method="POST">
                 <div class="form-group">
                     <label for="name">What is the name of your exchange event?</label>
                     <input type="event" id="event" name="event" class="form-control" placeholder="Event Name" value="<%= typeof event != 'undefined' ? event : '' %>" />
@@ -38,11 +39,17 @@
           />
         </div>
         <br />
-        <button type="submit" class="btn btn-primary btn-block">
+        <button
+          type="submit"
+          class="btn btn-primary btn-block"
+          href="/users/exchange"
+        >
           Create Exchange
         </button>
       </form>
-      <p class="lead mt-4">Have An Account? <a href="/users/login">Login</a></p>
+      <br />
+
+      <a href="/users/logout" class="btn btn-secondary">Logout</a>
     </div>
   </div>
 </div>
