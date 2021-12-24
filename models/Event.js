@@ -16,10 +16,6 @@ const EventSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    play: {
-        type: Boolean,
-        required: true,
-    },
 });
 
 const Event = mongoose.model("Event", EventSchema);
