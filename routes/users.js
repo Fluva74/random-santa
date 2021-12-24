@@ -4,7 +4,13 @@ const bcrypt = require("bcryptjs");
 const passport = require("passport");
 // Load User model
 const User = require("../models/User");
+const Event = require("../models/Event");
 const { forwardAuthenticated } = require("../config/auth");
+
+const corsOptions = {
+    origin: "http://localhost:3000",
+    credentials: true,
+};
 
 // Login Page
 router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
@@ -13,6 +19,32 @@ router.get("/login", forwardAuthenticated, (req, res) => res.render("login"));
 router.get("/register", forwardAuthenticated, (req, res) =>
     res.render("register")
 );
+
+//Exchange Page
+router.get("/exchange", forwardAuthenticated, (req, res) =>
+    res.render("exchange")
+);
+
+//Event Page
+router.get("/event", forwardAuthenticated, (req, res) => res.render("event"));
+
+//Groupname Page
+router.get("/groupname", forwardAuthenticated, (req, res) =>
+    res.render("groupname")
+);
+
+//Event
+router.post("/event", forwardAuthenticated, (req, res) => {
+    var myData = new Event(req.body);
+    myData
+        .save()
+        .then((item) => {
+            console.log("item saved to database");
+        })
+        .catch((err) => {
+            res.status(400).send("unable to save");
+        });
+});
 
 // Register
 router.post("/register", (req, res) => {
@@ -25,10 +57,6 @@ router.post("/register", (req, res) => {
 
     if (password != password2) {
         errors.push({ msg: "Passwords do not match" });
-    }
-
-    if (password.length < 6) {
-        errors.push({ msg: "Password must be at least 6 characters" });
     }
 
     if (errors.length > 0) {
@@ -81,8 +109,16 @@ router.post("/register", (req, res) => {
 // Login
 router.post("/login", (req, res, next) => {
     passport.authenticate("local", {
-        successRedirect: "/dashboard",
+        successRedirect: "/groupname",
         failureRedirect: "/users/login",
+        failureFlash: true,
+    })(req, res, next);
+});
+
+router.post("/groupname", (req, res, next) => {
+    passport.authenticate("local", {
+        successRedirect: "/exchange",
+        failureRedirect: "/users/event",
         failureFlash: true,
     })(req, res, next);
 });
